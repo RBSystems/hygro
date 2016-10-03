@@ -5,6 +5,12 @@ and implements tasks for blink updates...etc.
 
 #include <Task.h>
 
+enum led_state {
+  LED_ONCE = 2,
+  LED_ON = 1,
+  LED_OFF = 0
+};
+
 class LedClass
 : public Task
 {
@@ -14,6 +20,15 @@ public:
   ledPin(pin),
   ledOn(false)  // initialize members here
   { };
+
+public:
+  /* external control from functions, that can switch on/off and blink once for a certain time
+
+   */
+  uint8_t setActivity(led_state)
+  {
+      OnUpdate(999);
+  };
 
 
 private:
@@ -53,8 +68,10 @@ private:
 
 class LedWiFiClass : public LedClass {
 public:
-  LedWiFiClass() : LedClass(0,0) {};
+  LedWiFiClass() : LedClass(LedPin,timeInterval) {};
   static const uint8_t LedPin = 13;
+  static const uint32_t timeInterval = 999;
 };
+
 
 LedWiFiClass LedWiFi; // every second it will turn on/off the LED

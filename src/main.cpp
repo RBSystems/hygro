@@ -30,6 +30,8 @@ void setup()
 
   taskManager.StartTask(&LedWiFi); // start the blink task
 
+  LedWiFi.setActivity(LED_ONCE);
+
   WiFiSetup.begin();
 
   // initialize LED digital pin as an output.
