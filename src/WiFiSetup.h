@@ -28,6 +28,9 @@ public:
 
   private:
     uint8_t setupWiFi();
+
+  protected:
+    WiFiEvent_t onConnectHandler, onDisconnectHandler;
 };
 
 extern WiFiSetupClass WiFiSetup;

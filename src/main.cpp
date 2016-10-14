@@ -10,23 +10,14 @@
 #include <Task.h>
 
 // include sub files
-#include "ConfigManager.h"
 #include "WiFiSetup.h"
 #include "leds.h"
-
-class CfgBlob {
-  public:
-    const char* sta_ipa_addr = "";
-};
+#include "debug.h"
 
 TaskManager taskManager;
 
 void setup()
 {
-  CfgBlob cfg;
-  cfg.sta_ipa_addr = "18.117.33.201";
-  configManager.addParameter("sta_ipa_addr", &cfg.sta_ipa_addr);
-  configManager.begin(cfg);
 
   taskManager.StartTask(&LedWiFi); // start the blink task
 

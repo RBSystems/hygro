@@ -5,11 +5,11 @@ and implements tasks for blink updates...etc.
 
 #include <Task.h>
 
-enum led_state {
+typedef enum led_state {
   LED_ONCE = 2,
   LED_ON = 1,
   LED_OFF = 0
-};
+} led_state_t;
 
 class LedClass
 : public Task
@@ -25,9 +25,20 @@ public:
   /* external control from functions, that can switch on/off and blink once for a certain time
 
    */
-  uint8_t setActivity(led_state)
+  uint8_t setActivity(led_state_t state)
   {
-      OnUpdate(999);
+    switch (state) {
+      case LED_ONCE:
+        OnUpdate(999);
+        break;
+        case LED_ON:
+        
+          break;
+          case LED_OFF:
+
+            break;
+    }
+
   };
 
 
