@@ -21,6 +21,13 @@ class SleepClass {
     taskManager.EnterSleep(60 * 1000000, &state, sizeof(state)); // 60 seconds
     return 0;
   }
+
+  // // somewhere in code, enter sleep for 60 seconds or external interrupt
+  // SleepState state;
+  // state.someValue = 3333;
+  // state.anotherValue = 42;
+  // taskManager.EnterSleep(60 * 1000000, &state, sizeof(state)); // 60 seconds
+
 };
 
 
