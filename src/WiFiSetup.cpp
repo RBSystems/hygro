@@ -1,8 +1,10 @@
 #include "WiFiSetup.h"
-
+#include "debug.h"
 
 uint8_t WiFiSetupClass::begin()
 {
+  DEBUG_WIFISETUP_MSG("WiFiSetupClass::begin()").pln();
+
   WiFiSetupClass::readConfig();
 
   setupWiFi();

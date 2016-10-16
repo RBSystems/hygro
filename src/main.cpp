@@ -6,18 +6,41 @@
  */
 #include <Arduino.h>
 
+
 // include libraries
-#include <Task.h>
+#include <Task.h> //https://github.com/Makuna/Task.git
 
 // include sub files
 #include "WiFiSetup.h"
 #include "leds.h"
 #include "debug.h"
+#include "OTA.h"
+#include "sleep.h"
 
 TaskManager taskManager;
 
 void setup()
 {
+  #ifdef DEBUG_SERIAL
+  aSerial.setPrinter(DEBUG_SERIAL);
+  aSerial.setFilter(Level::v);
+  DEBUG_SERIAL.begin(115200);
+  #endif DEBUG_SERIAL
+
+  SleepState state;
+  if (taskManager.RestartedFromSleep(static_cast<void*>(&state), sizeof(state))) {
+    // wake from sleep
+    // state now contains what ever you stored in it when you called EnterSleep()
+    if (state.anotherValue == 0) {
+      // sleep called from second location
+    }
+    else {
+      // sleep called from first location
+    }
+  }
+  else {
+    // normal boot
+  }
 
   taskManager.StartTask(&LedWiFi); // start the blink task
 
